@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; Segma Vision Pro Light  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=56c4699f" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modeles" href="Modeles.html" />
+    <link rel="prev" title="SegmaVisionProLight" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Segma Vision Pro Light
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">|
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;INTRODUCTION&lt;/span&gt;
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;BUILDING BLOCKS&lt;/span&gt;
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;FOUNDATION MODELS&lt;/span&gt;
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;IMAGE SEGMENTATION&lt;/span&gt;</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modeles.html">Modeles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Building.html">Builiding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References.html">REFERENCES</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Segma Vision Pro Light</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h1>
+<section id="general-introduction">
+<h2>General Introduction<a class="headerlink" href="#general-introduction" title="Link to this heading"></a></h2>
+<img alt="_images/logo1.jpg" src="_images/logo1.jpg" />
+<p>This project aims to build a bridge (a connection) between users’ text request and object detection inside an image.</p>
+<p><span class="blue-bold-term">- First input:</span> Users’ text request (query or prompt) about an object;</p>
+<p><span class="blue-bold-term">- Second input:</span> The image;</p>
+<p><span class="blue-bold-term">- Output:</span> The requested object, filtered and highlighted (segmented).</p>
+<p><span class="blue-bold-term">For example:</span> the user has an image of people playing in the park, and wants to filter out dogs in the picture.</p>
+<p>In order to do so, the user inserts the picture and writes this query: “highlight dogs in the picture”</p>
+<p>The output would be a processed images where dogs are highlighted</p>
+<img alt="_images/logo.jpg" src="_images/logo.jpg" />
+<section id="how-were-we-able-to-do-that">
+<h3><strong>How were we able to do that ?</strong><a class="headerlink" href="#how-were-we-able-to-do-that" title="Link to this heading"></a></h3>
+<p>Building from scratch a model, that is trained on a dataset according to the field of interest.</p>
+</section>
+<section id="what-s-new-about-the-project">
+<h3><strong>What’s new about the project ?</strong><a class="headerlink" href="#what-s-new-about-the-project" title="Link to this heading"></a></h3>
+<p>Preparing an image dataset for training a model on segmentation is a time and energy consuming task, this process is done manually where one has to draw a contour on each object and label it.</p>
+<p>The bridge, the connection or the model we are building from scratch uses FOUNDATION MODELS for training (look at like a human sitting on a computer, drawing contours and labeling each object on the image). This enable optimization of time and labor resources and open doors to the use of large-scale datasets for training and application purposes using flexible prompt.</p>
+<p>This project goes way beyond the scope of detecting dogs in parks and may be used to perform object detection on any image in any field.</p>
+</section>
+<section id="project-building-strategy">
+<h3><strong>Project building strategy:</strong><a class="headerlink" href="#project-building-strategy" title="Link to this heading"></a></h3>
+<p>Modular components</p>
+<p>Manual implementation: Each component is implemented manually for pedagogical reasons</p>
+<p>Build to last strategy : Simple, accessible documentation with practice examples</p>
+<p>Accuracy-oriented: Replacing manually implemented components with imported frameworks for more accuracy</p>
+</section>
+</section>
+<section id="documentation-axes">
+<h2>Documentation axes<a class="headerlink" href="#documentation-axes" title="Link to this heading"></a></h2>
+<img alt="_images/logo2.jpg" src="_images/logo2.jpg" />
+</section>
+<section id="porject-introduction">
+<h2>Porject Introduction<a class="headerlink" href="#porject-introduction" title="Link to this heading"></a></h2>
+<p>This project aims to enhance an existing platform for object segmentation in images based on user prompts. The solution enables users to submit textual instructions to automatically detect and highlight objects within an image.</p>
+<p>As part of its evolution, two key modules are being developed:</p>
+<ul class="simple">
+<li><p><strong>Keyword Filter:</strong> This component leverages advanced natural language processing (NLP) and (LLM) techniques to automatically extract the objects or classes mentioned in a prompt. It effectively translates user instructions into actionable elements for image segmentation.</p></li>
+<li><p><strong>Human Feedback Loop:</strong> This interactive mechanism allows users to validate or adjust the proposed results. The collected feedback is used to continuously improve the system’s accuracy and relevance.</p></li>
+</ul>
+<p>The overall objective is to make the platform more efficient, intuitive, and aligned
+with real user needs, while fostering effective human-machine collaboration in visual segmentation tasks.</p>
+<section id="keyword-extraction-pipeline">
+<h3><strong>Keyword Extraction Pipeline</strong><a class="headerlink" href="#keyword-extraction-pipeline" title="Link to this heading"></a></h3>
+<p>To achieve this, the workflow begins with a preprocessing phase in which the user’s prompt
+is analyzed using a first large language model (LLM). This initial step aims to refine, normalize,
+or reformulate the prompt in order to ensure better semantic clarity and alignment with the expected task.</p>
+<p>The output of this preprocessing phase then serves as input for a second module, which uses
+another specialized LLM to perform keyword extraction. This model is designed to identify
+and isolate the relevant objects or classes mentioned in the prompt, which are essential for
+guiding the image segmentation process.</p>
+<p>This two-stage architecture—combining prompt preprocessing and targeted keyword
+extraction—ensures higher precision and robustness in interpreting user instructions, laying
+the foundation for more accurate and context-aware visual segmentation.</p>
+<img alt="_images/logo3.jpg" src="_images/logo3.jpg" />
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="SegmaVisionProLight" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Modeles.html" class="btn btn-neutral float-right" title="Modeles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Alae Boutarhat  &amp; Salma Bourkiba.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

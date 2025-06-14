@@ -10,17 +10,21 @@ Add your content using ``reStructuredText`` syntax. See the
 `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 documentation for details.
 
+##############################
+SegmaVisionProLight
+##############################
+
+##############################
+SegmaVisionProLight
+##############################
+
 .. toctree::
-   :maxdepth: 3
-   :caption: |
-      <span style="color:#1E90FF;font-weight:bold;text-transform:uppercase">INTRODUCTION</span>
-      <span style="color:#1E90FF;font-weight:bold;text-transform:uppercase">BUILDING BLOCKS</span>
-      <span style="color:#1E90FF;font-weight:bold;text-transform:uppercase">FOUNDATION MODELS</span>
-      <span style="color:#1E90FF;font-weight:bold;text-transform:uppercase">IMAGE SEGMENTATION</span>
+   :maxdepth: 2
+   :caption: TABLE DES MATIÈRES
    :name: mainmenu
-   :hidden:
 
    introduction
-   Modeles
    Building
+   Modeles
    References
+

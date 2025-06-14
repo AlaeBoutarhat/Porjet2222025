@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Segma Vision Pro Light  documentation</title>
+  <title>Modeles &mdash; Segma Vision Pro Light  documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css?v=56c4699f" />
@@ -17,8 +18,10 @@
       <script src="_static/doctools.js?v=9a2dae69"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Builiding" href="Building.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -40,12 +43,16 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">TABLE DES MATIÈRES</span></p>
-<ul>
+              <p class="caption" role="heading"><span class="caption-text">|
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;INTRODUCTION&lt;/span&gt;
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;BUILDING BLOCKS&lt;/span&gt;
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;FOUNDATION MODELS&lt;/span&gt;
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;IMAGE SEGMENTATION&lt;/span&gt;</span></p>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modeles</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Building.html">Builiding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Modeles.html">Modeles</a></li>
-<li class="toctree-l1"><a class="reference internal" href="References.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References.html">REFERENCES</a></li>
 </ul>
 
         </div>
@@ -62,8 +69,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Index</li>
+      <li class="breadcrumb-item active">Modeles</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Modeles.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -71,17 +79,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
-</div>
+  <section id="modeles">
+<h1>Modeles<a class="headerlink" href="#modeles" title="Link to this heading"></a></h1>
+<section id="keyword-extraction-model">
+<h2>Keyword Extraction Model:<a class="headerlink" href="#keyword-extraction-model" title="Link to this heading"></a></h2>
+<p>For the keyword extraction task, we use the Zephyr 7B Beta model provided by Hugging Face.
+This is a powerful instruction-tuned large language model designed for high-performance NLP tasks.</p>
+<p>The model was fine-tuned on a custom dataset specifically designed for the keyword extraction
+use case. Each training example consists of:</p>
+<p><strong>An input prompt:</strong> representing a user query; Preceded by a directive prompt to guide the model during fine-tuning,</p>
+<p><strong>An output:</strong> consisting of the list of objects (or keywords) mentioned in the prompt.</p>
+<p>This fine-tuning approach allows the model to learn how to identify
+and extract relevant objects regardless of the prompt’s structure, wording,
+or semantic style. After training, the Zephyr model is capable of handling diverse
+user instructions and reliably returning the corresponding keywords, making it a robust component
+for real-world prompt interpretation in image segmentation tasks.</p>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Building.html" class="btn btn-neutral float-right" title="Builiding" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

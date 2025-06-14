@@ -1,0 +1,27 @@
+/* Style des éléments de menu */
+.wy-menu-vertical li.current > a {
+    color: #1E90FF !important;
+    border-right: 3px solid #1E90FF !important;
+}
+
+.wy-menu-vertical li.toctree-l1 a {
+    color: #1E90FF !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    padding-left: 15px !important;
+}
+
+/* Cacher le texte "caption" */
+.wy-menu-vertical p.caption {
+    display: none !important;
+}
+
+
+.blue-bold-term {
+    color: #1E90FF;
+    font-weight: bold;
+}
+.green-text {
+    color: #021166 !important;  /* Vert foncé */
+    font-weight: normal;
+}

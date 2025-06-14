@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Builiding &mdash; Segma Vision Pro Light  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=56c4699f" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="REFERENCES" href="References.html" />
+    <link rel="prev" title="Modeles" href="Modeles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Segma Vision Pro Light
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">|
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;INTRODUCTION&lt;/span&gt;
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;BUILDING BLOCKS&lt;/span&gt;
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;FOUNDATION MODELS&lt;/span&gt;
+&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;IMAGE SEGMENTATION&lt;/span&gt;</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modeles.html">Modeles</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Builiding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References.html">REFERENCES</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Segma Vision Pro Light</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Builiding</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Building.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="builiding">
+<h1>Builiding<a class="headerlink" href="#builiding" title="Link to this heading"></a></h1>
+<section id="building-and-validating-the-keyword-extraction-model">
+<h2>Building and Validating the Keyword Extraction Model<a class="headerlink" href="#building-and-validating-the-keyword-extraction-model" title="Link to this heading"></a></h2>
+<section id="data-creation">
+<h3>Data Creation<a class="headerlink" href="#data-creation" title="Link to this heading"></a></h3>
+<p><strong>Dataset</strong></p>
+<p>We will be working with the Object365 dataset, available on Hugging Face.</p>
+<p>The Objects365 dataset is a large-scale, high-quality dataset specifically created to advance research in object detection, with a strong emphasis on the diversity of objects as they appear in real-world scenarios (“in the wild”).
+- Scale: It comprises approximately 2 million high-resolution images.</p>
+<ul class="simple">
+<li><p>Object Categories: The dataset covers 365 distinct object categories. These categories are chosen to be common and varied, representing a wide range of everyday objects.</p></li>
+<li><p>Annotations: Each image is richly annotated with over 30 million high-quality bounding boxes. This means that numerous object instances are labeled within each image.</p></li>
+<li><p>Annotation Details: The annotations include precise bounding boxes outlining each object and a corresponding category label for each box.</p></li>
+<li><p>Purpose: Objects365 serves as a challenging and comprehensive benchmark for training and evaluating object detection models. Its scale and diversity aim to push the boundaries of current object detection research.</p></li>
+<li><p>High-Quality Annotations: The annotations are meticulously created through a carefully designed three-step annotation pipeline to ensure accuracy.</p></li>
+<li><p>Focus on Real-World Objects: Unlike some datasets that might focus on more iconic or centered objects, Objects365 includes objects in various contexts, poses, and occlusions, reflecting real-world complexity.</p></li>
+<li><p>Benefits for Pre-training: Models pre-trained on Objects365 have demonstrated superior performance and better generalization on various downstream object detection tasks compared to models pre-trained on datasets like ImageNet.</p></li>
+<li><p>Dataset Structure: The dataset typically consists of a collection of images and a corresponding annotation file (often in a format similar to COCO), detailing the bounding box coordinates and category labels for each object in each image.</p></li>
+<li><p>Usage: It is widely used for training advanced deep learning models for object detection, evaluating their performance, and researching challenging aspects like detecting rare objects and improving model generalization.</p></li>
+</ul>
+<p><strong>Data to fine tune the model</strong></p>
+<p>To fine-tune the Zephyr 7B Beta model, we first build a custom training dataset derived from the Object365 dataset. The process involves several key steps:</p>
+<p><span class="blue-bold-term">Annotation Extraction:</span> We begin by extracting the object annotations available in Object365. Each annotation corresponds to one or more object classes present in an image.</p>
+<p><span class="blue-bold-term">Prompt Generation:</span> We generate around 100 diverse prompts that vary in form, semantics, grammatical structure, and complexity. These prompts are designed to reflect the variety of ways a user might request object segmentation.</p>
+<p><span class="blue-bold-term">Prompt Annotation Pairing:</span> Each prompt contains a placeholder where the list of annotations (object classes) will be inserted. We randomly associate each prompt with a different list of annotations, simulating realistic user instructions.</p>
+<p><span class="blue-bold-term">Structuring the Dataset:</span> The resulting data is formatted as a structured JSON file, where:</p>
+<ul class="simple">
+<li><p>The input field contains the generated prompt with embedded annotations, preceded by a directive prompt that guides the model during fine-tuning.</p></li>
+<li><p>The output field contains the corresponding list of object classes extracted from the prompt.</p></li>
+</ul>
+<p>This approach allows the model to learn how to identify keywords from a wide variety of user expressions, enhancing its generalization capabilities for real-world use cases.</p>
+<p>{“input”: “nInstruction: You are an assistant specialized in object segmentation. Your task is to list all the objects mentioned in the description, following the specific instructions provided.nExample: For the input ‘Segment cats, dogs, but not humans’, the expected output is [‘cat’, ‘dog’].nDescription: Correctly annotate elements of type Vase Flower Picture Frame Cabinet shelf Coffee Table Couch Pillow Trash bin Can Moniter TV Remoten”, “output”: [“Cabinet/shelf”, “Coffee Table”, “Couch”, “Flower”, “Moniter/TV”, “Picture/Frame”, “Pillow”, “Remote”, “Trash bin Can”, “Vase”]}
+{“input”: “nInstruction: You are an assistant specialized in object segmentation. Your task is to list all the objects mentioned in the description, following the specific instructions provided.nExample: For the input ‘Segment cats, dogs, but not humans’, the expected output is [‘cat’, ‘dog’].nDescription: Segment each Person Microphone found in this scenen”, “output”: [“Microphone”, “Person”]}</p>
+<p><em>Iport the dataset</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;jxu124/objects365&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ds</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><em>Split the dataset into train and test data</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_data</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="s1">&#39;validation&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><em>Creat prompts and randomly associate a prompt with a list of annotations</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># Sélectionner un échantillon aléatoire de 400 000 indices</span>
+<span class="n">sample_indices</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_data</span><span class="p">)),</span> <span class="mi">200000</span><span class="p">)</span>
+
+<span class="c1"># Créer un sous-ensemble à partir de ces indices</span>
+<span class="n">sample_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">train_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sample_indices</span><span class="p">]</span>
+
+<span class="c1"># Liste pour stocker les prompts</span>
+<span class="n">prompts</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Liste des modèles de prompt</span>
+<span class="n">prompt_templates</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="c1"># 🔹 Simple prompts</span>
+    <span class="s2">&quot;Detect and segment the following objects in the image: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Identify and locate the following elements: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;What objects are visible in the image? Answer: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Precisely segment the objects: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Recognize and annotate the following elements: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;List all objects present in the image, including </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Find and mark the visible elements: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Accurately locate the objects: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Separate and distinguish the following objects: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Draw the contours of each </span><span class="si">{}</span><span class="s2"> in the image.&quot;</span><span class="p">,</span>
+
+    <span class="c1"># 🔹 Question-based prompts</span>
+    <span class="s2">&quot;What detectable objects are in the image? </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Can </span><span class="si">{}</span><span class="s2"> be seen in this image?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Which elements in the image belong to the category </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Does the image contain </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;What distinct objects are present, including </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Describe all visible objects, particularly </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;How many </span><span class="si">{}</span><span class="s2"> are present in the image?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Does the image depict a scene containing </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Which elements are the most visible, including </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;What is the main object in the image among </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+
+    <span class="c1"># 🔹 Negation-based prompts</span>
+    <span class="s2">&quot;Do not consider objects other than </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Ignore elements that are not </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The image does NOT contain </span><span class="si">{}</span><span class="s2">. Identify only the other objects.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Include only </span><span class="si">{}</span><span class="s2"> in the analysis.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Avoid detecting anything except </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Do not segment any objects other than </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Exclude elements that do not belong to category </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Detect all objects except </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Do not consider objects that are not </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Filter only for the presence of </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+
+    <span class="c1"># 🔹 Action-specific prompts</span>
+    <span class="s2">&quot;Draw a box around </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Highlight the area containing </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Outline the exact shape of </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Emphasize the presence of </span><span class="si">{}</span><span class="s2"> in the image.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Create a segmentation mask for </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Precisely define </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Classify the objects including </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Correctly annotate elements of type </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Add a label for each </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Group objects similar to </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+
+    <span class="c1"># 🔹 Detailed description prompts</span>
+    <span class="s2">&quot;Describe in detail the following objects in the image: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Provide an explanation of the presence of </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Analyze the image and precisely identify </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Classify the detected objects, including </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Associate each </span><span class="si">{}</span><span class="s2"> with its exact position in the image.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;What types of objects appear here? Included list: </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Detail the shape and color of </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Which objects are closest to </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Explain how </span><span class="si">{}</span><span class="s2"> interacts with other objects.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Summarize the objects present, focusing on </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+
+    <span class="c1"># 🔹 Contextual or temporal prompts</span>
+    <span class="s2">&quot;How far is </span><span class="si">{}</span><span class="s2"> from other objects?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Is there any overlap between </span><span class="si">{}</span><span class="s2"> and other elements?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;How is </span><span class="si">{}</span><span class="s2"> positioned in the image?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Determine if </span><span class="si">{}</span><span class="s2"> is in the foreground or background.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Observe interactions between </span><span class="si">{}</span><span class="s2"> and other objects.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Analyze the proximity between </span><span class="si">{}</span><span class="s2"> and its environment.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Check if </span><span class="si">{}</span><span class="s2"> is in motion or static.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;See if </span><span class="si">{}</span><span class="s2"> is partially hidden by other objects.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Detect if </span><span class="si">{}</span><span class="s2"> is reflected on a surface.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Compare the size of </span><span class="si">{}</span><span class="s2"> with other objects present.&quot;</span><span class="p">,</span>
+
+    <span class="c1"># 🔹 Alternative phrasing prompts</span>
+    <span class="s2">&quot;Indicate the position of </span><span class="si">{}</span><span class="s2"> in the image.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Segment each </span><span class="si">{}</span><span class="s2"> found in this scene.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Which categories of objects are represented, including </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Does the image contain more </span><span class="si">{}</span><span class="s2"> than other objects?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Classify the detected objects, focusing on </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Identify all </span><span class="si">{}</span><span class="s2"> and estimate their relative size.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Which objects are smaller or larger than </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Count the exact number of </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Define the outline of </span><span class="si">{}</span><span class="s2"> in this image.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Locate </span><span class="si">{}</span><span class="s2"> and mark their precise placement.&quot;</span><span class="p">,</span>
+
+    <span class="c1"># 🔹 Uncertainty-based prompts</span>
+    <span class="s2">&quot;Is it possible that the image contains </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Detect all visible objects, assuming the presence of </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;List the potential objects in the image, including </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Does the object </span><span class="si">{}</span><span class="s2"> appear well-defined in the image?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Find identifiable objects, focusing on </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Estimate the presence of </span><span class="si">{}</span><span class="s2"> among the visible elements.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;What is the confidence level that </span><span class="si">{}</span><span class="s2"> is in the image?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Detect the objects with the highest probability, including </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Which objects could be confused with </span><span class="si">{}</span><span class="s2">?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Is </span><span class="si">{}</span><span class="s2"> fully visible or partially hidden?&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Générer les prompts pour l&#39;échantillon</span>
+<span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">sample_data</span><span class="p">:</span>
+    <span class="n">image_id</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;global_image_id&#39;</span><span class="p">]</span>
+    <span class="n">image_path</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;image_path&#39;</span><span class="p">]</span>
+    <span class="n">anns_info</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;anns_info&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Initialiser la liste des objets pour cette image</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Pour chaque annotation (objet) de l&#39;image</span>
+    <span class="k">for</span> <span class="n">ann</span> <span class="ow">in</span> <span class="n">anns_info</span><span class="p">:</span>
+        <span class="n">category</span> <span class="o">=</span> <span class="n">ann</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span>
+        <span class="n">objects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">category</span><span class="p">)</span>
+
+    <span class="c1"># Générer un prompt brut avec les objets</span>
+    <span class="n">prompt_brut</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">objects</span><span class="p">)</span>
+
+    <span class="c1"># Choisir un prompt template au hasard</span>
+    <span class="n">prompt_template</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">prompt_templates</span><span class="p">)</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">prompt_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">prompt_brut</span><span class="p">)</span>
+
+    <span class="c1"># Correction du prompt</span>
+    <span class="n">prompt_corrige</span> <span class="o">=</span> <span class="n">prompt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;the following objects&quot;</span><span class="p">,</span> <span class="s2">&quot;the following items&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Mots-clés extraits de l&#39;objet</span>
+    <span class="n">keywords</span> <span class="o">=</span> <span class="n">objects</span>
+
+    <span class="c1"># Ajouter le prompt à la liste</span>
+    <span class="n">prompts</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s2">&quot;prompt_brut&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">,</span>
+        <span class="s2">&quot;prompt_corrige&quot;</span><span class="p">:</span> <span class="n">prompt_corrige</span><span class="p">,</span>
+        <span class="s2">&quot;keywords&quot;</span><span class="p">:</span> <span class="n">keywords</span><span class="p">,</span>
+        <span class="s2">&quot;image_id&quot;</span><span class="p">:</span> <span class="n">image_id</span><span class="p">,</span>
+        <span class="s2">&quot;image_path&quot;</span><span class="p">:</span> <span class="n">image_path</span>
+    <span class="p">})</span>
+
+<span class="c1"># Sauvegarder les prompts par lots (par exemple, 1000 prompts par fichier)</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">batch_num</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Sauvegarder chaque lot dans un fichier JSON</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">prompts</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
+    <span class="n">batch_prompts</span> <span class="o">=</span> <span class="n">prompts</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span>
+    <span class="n">batch_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;/content/drive/MyDrive/ProjetMetier/Data1/prompts_batch_</span><span class="si">{</span><span class="n">batch_num</span><span class="si">}</span><span class="s1">.json&#39;</span>
+
+    <span class="c1"># Sauvegarder le lot dans un fichier JSON</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">batch_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">batch_prompts</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Lot </span><span class="si">{</span><span class="n">batch_num</span><span class="si">}</span><span class="s2"> sauvegardé : </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">batch_prompts</span><span class="p">)</span><span class="si">}</span><span class="s2"> prompts&quot;</span><span class="p">)</span>
+    <span class="n">batch_num</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p><strong>Fine tune the modle on the created dataset</strong></p>
+<p>Fine-tuning a large language model such as Zephyr or Mistral requires significant computational resources. Typically, a GPU with at least 24 GB of VRAM is recommended for efficiently training a 7B parameter model. However, using optimization techniques such as LoRA and 4-bit quantization (bnb_4bit), it is possible to fine-tune on more modest hardware—sometimes with as little as 12–16 GB of VRAM, or even 8 GB with careful memory management. Additionally, at least 16 to 32 GB of RAM is advised depending on the size of the dataset and the model architecture.</p>
+<p>Several cloud platforms support fine-tuning:</p>
+<ul class="simple">
+<li><p>RunPod.io: Affordable GPU rental service (A100, V100, T4, etc.) with support for Jupyter Notebooks.</p></li>
+<li><p>Google Colab Pro/Pro+: An accessible option for smaller-scale training, offering GPUs like T4 or A100 (based on availability).</p></li>
+<li><p>Paperspace: Provides notebooks with powerful GPUs on demand.</p></li>
+<li><p>Lambda Labs, NVIDIA LaunchPad, and Hugging Face Training Cluster are also suitable for more extensive training tasks.</p></li>
+</ul>
+<p>For local fine-tuning, setups with GPUs between 8–12 GB VRAM can still be viable using lightweight fine-tuning frameworks such as PEFT (LoRA), Transformers + Accelerate, and memory-efficient tools like DeepSpeed, QLoRA, or bitsandbytes. However, training locally on limited
+hardware requires careful configuration to avoid out-of-memory errors</p>
+<p>After the fine-tuning is complete, we will have a folder containing the files obtained after the fine-tuning.
+This folder and the original template are used to extract keywords from the prompts.</p>
+<p><strong>Testing the modele</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+<span class="kn">from</span> <span class="nn">peft</span> <span class="kn">import</span> <span class="n">PeftModel</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="k">def</span> <span class="nf">segment_objects_with_prompting</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span>
+                                    <span class="n">base_model_name</span><span class="o">=</span><span class="s2">&quot;HuggingFaceH4/zephyr-7b-beta&quot;</span><span class="p">,</span>
+                                    <span class="n">lora_path</span><span class="o">=</span><span class="s2">&quot;/teamspace/studios/this_studio/phi2/zypher&quot;</span><span class="p">,</span>
+                                    <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+    <span class="c1"># Instructions système</span>
+    <span class="n">system_instruction</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;You are a world-class object extraction expert for vision-language tasks. &quot;</span>
+    <span class="s2">&quot;Your only goal is to extract all physical, visible objects mentioned or implied in a user’s prompt, &quot;</span>
+    <span class="s2">&quot;to prepare for segmentation in an image.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="s2">&quot;🧠 You understand both simple and complex prompts, even when the object mentions are indirect, implied, or embedded in long instructions.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="s2">&quot;🔍 Your job is to:</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;1. Identify every concrete, visible, segmentable object mentioned in the prompt.</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;2. Return ONLY a **clean, comma-separated list** of these object names.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="s2">&quot;📌 STRICT RULES:</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;- ✅ Output only singular, normalized object names (e.g., &#39;Dog&#39;, not &#39;Dogs&#39;).</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;- ✅ Capitalize each object (e.g., &#39;Tree&#39;, &#39;Car&#39;, &#39;Person&#39;).</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;- ❌ Do NOT include colors, actions, verbs, adjectives, or scene descriptions.</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;- ❌ Do NOT include background elements unless explicitly asked (e.g., &#39;Sky&#39;, &#39;Ground&#39;).</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;- ❌ Do NOT repeat objects. No explanations. No formatting. Only the list.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="s2">&quot;🧪 Examples:</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;➡ Prompt: &#39;Segment dogs, cars, and any people, but ignore trees and the sky.&#39;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;✔ Output: Dog, Car, Person</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="s2">&quot;➡ Prompt: &#39;Please segment everything related to food, like apples, bananas, or bread.&#39;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;✔ Output: Apple, Banana, Bread</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="s2">&quot;➡ Prompt: &#39;I want to segment animals such as horses, birds, and cats. Skip buildings and humans.&#39;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;✔ Output: Horse, Bird, Cat</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="s2">&quot;⛔ Bad Outputs:</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;- &#39;Segmented objects: Dog, Car&#39;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;- &#39;I found: Cat, Dog&#39;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;- &#39;Apple, Banana, Bread. Ignore cups.&#39;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="s2">&quot;🔁 Always return a minimal and clean list like:</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;👉 Dog, Car, Tree, Person</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="s2">&quot;🧠 Be comprehensive. Be precise. Only return valid object names.&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Prompt complet</span>
+    <span class="n">full_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&lt;|system|&gt;</span><span class="se">\n</span><span class="si">{</span><span class="n">system_instruction</span><span class="si">}</span><span class="se">\n</span><span class="s2">&lt;|user|&gt;</span><span class="se">\n</span><span class="si">{</span><span class="n">prompt</span><span class="si">}</span><span class="se">\n</span><span class="s2">&lt;|assistant|&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="c1"># Forçage du CPU</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cpu&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Chargement du modèle de base et du tokenizer sur CPU</span>
+    <span class="n">base_model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+        <span class="n">base_model_name</span><span class="p">,</span>
+        <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+        <span class="n">device_map</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="n">device</span><span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">base_model_name</span><span class="p">)</span>
+
+    <span class="c1"># Chargement du modèle LoRA sur CPU</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">PeftModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">base_model</span><span class="p">,</span> <span class="n">lora_path</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+    <span class="c1"># Encodage</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">full_prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1"># Génération</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span>
+            <span class="o">**</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">max_new_tokens</span><span class="o">=</span><span class="n">max_new_tokens</span><span class="p">,</span>
+            <span class="n">pad_token_id</span><span class="o">=</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">eos_token_id</span><span class="p">,</span>
+            <span class="n">do_sample</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Décodage et extraction</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">assistant_response</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;&lt;|assistant|&gt;&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+    <span class="c1"># Nettoyage des objets</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">assistant_response</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+    <span class="k">if</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="n">object_line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">object_candidates</span> <span class="o">=</span> <span class="p">[</span><span class="n">obj</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">object_line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">obj</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+        <span class="n">cleaned_objects</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">object_candidates</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cleaned_objects</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎯 Objets détectés :&quot;</span><span class="p">,</span> <span class="n">cleaned_objects</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cleaned_objects</span>
+
+<span class="c1"># Exemple d’appel</span>
+<span class="n">segment_objects_with_prompting</span><span class="p">(</span><span class="s2">&quot;Segment cats, dogs, and birds but ignore cars and chairs.&quot;</span><span class="p">)</span>
+<span class="n">segment_objects_with_prompting</span><span class="p">(</span><span class="s2">&quot;Segment all animals visible in the image like horses and elephants but ignore the background&quot;</span><span class="p">)</span>
+<span class="n">segment_objects_with_prompting</span><span class="p">(</span><span class="s2">&quot;Segment everything related to food but ignore drinks and containers.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Modeles.html" class="btn btn-neutral float-left" title="Modeles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="References.html" class="btn btn-neutral float-right" title="REFERENCES" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Alae Boutarhat  &amp; Salma Bourkiba.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

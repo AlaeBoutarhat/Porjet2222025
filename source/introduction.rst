@@ -3,7 +3,7 @@ Introduction
 
 General Introduction
 ----------------------
-.. image:: /source/images/logo1.jpg
+.. image:: images/logo1.jpg
 
 
 This project aims to build a bridge (a connection) between users' text request and object detection inside an image.
@@ -20,7 +20,7 @@ In order to do so, the user inserts the picture and writes this query: "highligh
 
 The output would be a processed images where dogs are highlighted
 
-.. image:: /source/images/logo.jpg
+.. image:: images/logo.jpg
 
 
 
@@ -52,7 +52,7 @@ Accuracy-oriented: Replacing manually implemented components with imported frame
 Documentation axes
 -------------------
 
-.. image:: /source/images/logo2.jpg
+.. image:: images/logo2.jpg
 
 
 Porject Introduction
@@ -85,4 +85,4 @@ extraction—ensures higher precision and robustness in interpreting user instru
 the foundation for more accurate and context-aware visual segmentation.
 
 
-.. image:: /source/images/logo3.jpg
+.. image:: images/logo3.jpg
