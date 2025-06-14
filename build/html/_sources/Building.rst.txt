@@ -6,11 +6,17 @@ Builiding
    :doc:`Previous <introduction>` | :doc:`Next <Building>`
 
 
-Building and Validating the Keyword Extraction Model
------------------------------------------------------------
+**Part 1 : Keyword Extraction Model**
+#########################################
+In this section, we will explore how to create the dataset for fine-tuning the keyword 
+extraction model, as well as the testing and validation of this model
+
+
 Data Creation
-~~~~~~~~~~~~~~~~~~~~~~~
+=================
+
 **Dataset**
+----------------------
 
 We will be working with the Object365 dataset, available on Hugging Face.
 
@@ -36,6 +42,7 @@ The Objects365 dataset is a large-scale, high-quality dataset specifically creat
 - Usage: It is widely used for training advanced deep learning models for object detection, evaluating their performance, and researching challenging aspects like detecting rare objects and improving model generalization.
 
 **Data to fine tune the model**
+--------------------------------------------
 
 To fine-tune the Zephyr 7B Beta model, we first build a custom training dataset derived from the Object365 dataset. The process involves several key steps:
 
@@ -245,6 +252,7 @@ This approach allows the model to learn how to identify keywords from a wide var
 
 
 **Fine tune the modle on the created dataset**
+--------------------------------------------------
 
 Fine-tuning a large language model such as Zephyr or Mistral requires significant computational resources. Typically, a GPU with at least 24 GB of VRAM is recommended for efficiently training a 7B parameter model. However, using optimization techniques such as LoRA and 4-bit quantization (bnb_4bit), it is possible to fine-tune on more modest hardware—sometimes with as little as 12–16 GB of VRAM, or even 8 GB with careful memory management. Additionally, at least 16 to 32 GB of RAM is advised depending on the size of the dataset and the model architecture.
 
@@ -266,6 +274,7 @@ This folder and the original template are used to extract keywords from the prom
 
 
 **Testing the modele**
+-------------------------
 
 .. code-block:: python
 
@@ -371,3 +380,206 @@ This folder and the original template are used to extract keywords from the prom
     segment_objects_with_prompting("Segment all animals visible in the image like horses and elephants but ignore the background")
     segment_objects_with_prompting("Segment everything related to food but ignore drinks and containers.")
 
+
+
+**Part 2 : Preprocessing of the prompt**
+#########################################
+
+
+**I. First approach : NLP functions**
+======================================
+
+Our focus here is on the intelligent prompt preprocessing system, a critical component of the Segma Vision Pro Light pipeline. We will detail its methodology for transforming raw user input into clear,
+actionable instructions, thereby enhancing system efficiency and accuracy
+
+The main objectives are:
+
+- 1. Cleaning and Normalization: Remove noise (special characters, case inconsistencies) from prompts.
+
+- 2. Grammar Correction: Fix grammatical errors in French or English text.
+
+- 3. Translation: Translate text between French and English.
+
+- 4. Paraphrasing: Generate diverse and semantically equivalent reformulations of a prompt, ranked by relevance.
+
+Detailed Breakdown of Each Function
+
+**1. nettoyer_prompt(prompt):**
+------------------------------------------
+This function leans a text prompt by removing special characters and converting it to lowercase
+
+Purpose
+~~~~~~~
+Cleans a prompt by removing special characters and converting to lowercase.
+
+Techniques
+~~~~~~~~~~
+- Regex pattern ``[^\w\s]`` to remove non-alphanumeric chars
+- String method ``lower()`` for case normalization
+
+Input/Output
+~~~~~~~~~~~~
++----------+---------------------------------+
+| Input    | Raw prompt (string)             |
++----------+---------------------------------+
+| Output   | Cleaned lowercase text (string) |
++----------+---------------------------------+
+
+Example::
+  
+  input: "Hello! How's the weather?"
+  output: "hello hows the weather"
+
+**2. corriger_phrase():**
+----------------------------
+
+Purpose
+~~~~~~~
+Corrects grammatical errors in French or English text.
+
+Techniques
+~~~~~~~~~~
+- ``language_tool_python`` library
+- Language-specific rules ('fr' or 'en-US')
+
+Parameters
+~~~~~~~~~~~~~~~
++----------+---------------------+-----------+
+| Name     | Type                | Default   |
++----------+---------------------+-----------+
+| phrase   | str                 | Required  |
++----------+---------------------+-----------+
+| langue   | str ('fr'/'en')     | 'fr'      |
++----------+---------------------+-----------+
+
+Example::
+  
+  input: "Je suis aller"
+  output: "Je suis allé"
+
+**3. Translation Functions:**
+--------------------------------
+
+3.1 traduire_en_anglais()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Purpose
+~~~~~~~~~~~
+Translates French text to English.
+
+3.2 traduire_en_francais()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Purpose
+~~~~~~~
+Translates English text to French.
+
+Techniques
+~~~~~~~~~~
+- ``GoogleTranslator`` from deep_translator
+- Automatic language detection (source='auto')
+
+Example::
+  
+  input: "Bonjour"
+  output: "Hello"
+
+**4. reform():**
+-------------------
+
+Purpose
+~~~~~~~~~~~
+Generates and ranks paraphrased versions of a prompt.
+
+Technical Implementation
+~~~~~~~~~~~~~~~~~~~~~~~~
+1. Paraphrase Generation:
+   - T5 model (Vamsi/T5_Paraphrase_Paws)
+   - Advanced sampling: temperature=1.8 , top_p=0.8 , repetition_penalty=1.2
+
+2. Semantic Ranking:
+   - BERTScore evaluation
+   - roberta-large model
+   - F1 metric scoring
+
+Parameters
+~~~~~~~~~~
++-------------------+---------------------+-----------+
+| Name              | Type                | Default   |
++-------------------+---------------------+-----------+
+| prompt            | str                 | Required  |
++-------------------+---------------------+-----------+
+| dataset_path      | str                 | Required  |
++-------------------+---------------------+-----------+
+| num_reformulations| int                 | 10        |
++-------------------+---------------------+-----------+
+| num_best          | int                 | 6         |
++-------------------+---------------------+-----------+
+
+Output
+~~~~~~
+Tuple containing:
+1. All generated reformulations (list)
+2. Top-ranked reformulations with scores (list of tuples)
+
+Dependencies
+------------
+- regex, language_tool_python, deep_translator
+- transformers, torch, bert_score, numpy
+
+
+.. note::
+   Source file : :download:`Preprocessing_functions.py`
+
+
+**II. Second approach : LLM-Based Text Processing Approach**
+==================================================================
+
+This approach replaces multiple NLP functions with a single Large Language Model (LLM) for unified text preprocessing, offering enhanced quality and simplicity.
+
+**Key Advantages**
+---------------------
+
+1. End-to-End Processing
+
+- Replaces multiple specialized functions with one model
+- Eliminates complex pipelines and tool dependencies
+
+2. Contextual Understanding
+
+- Better grammar correction through semantic analysis
+- Maintains coherent paraphrasing with original intent
+
+3. Multilingual Efficiency
+
+- Supports 100+ languages natively
+- Provides more natural translations than dictionary methods
+
+4. Adaptability
+
+- Customizable via prompt engineering
+- Supports few-shot learning for domain adaptation
+
+**LLM Model Selection**
+--------------------------------------------------
+
+
+The **Mistral** model, run locally via the **Ollama** environment, was chosen as the primary engine for processing user prompts. Several technical and operational criteria informed this decision:
+
+- Advanced Capabilities: Mistral is recognized for its advanced text understanding and generation capabilities, particularly in tasks like reformulation, grammatical correction, and translation. This makes it ideally suited for our intelligent semantic preprocessing needs.
+
+- Open-Source Nature: As an open-source model, Mistral offers flexibility and transparency.
+
+- Seamless Integration: The model integrates easily with evaluation tools such as BERTScore, enabling automated measurement of the relevance of generated reformulations.
+
+
+**Utilizing BERTScore for Reformulation Filtering**
+---------------------------------------------------------
+
+What is BERTScore?
+
+BERTScore is a metric derived from the F1 score of BERT, specifically utilizing a roberta-large model. It's designed to measure the semantic 
+similarity between original prompts and their generated reformulations.
+
+
+Following the generation of initial prompt reformulations by the LLM model (Mistral via Ollama), it's essential to filter and select those most relevant and semantically closest to our dataset used for training the keyword extraction model (the classes to be segmented or labeled). To achieve this, we've integrated an advanced scoring method: **BERTScore**

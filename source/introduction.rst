@@ -68,8 +68,32 @@ As part of its evolution, two key modules are being developed:
 The overall objective is to make the platform more efficient, intuitive, and aligned 
 with real user needs, while fostering effective human-machine collaboration in visual segmentation tasks.
 
+
+
+
+
+**Preprocessing of the prompt**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Within the Segma Vision Pro Light project, an intelligent prompt preprocessing
+system has been implemented to guarantee the quality of user instructions before their processing. This system leverages the Mistral model via Ollama and includes the following steps: cleaning, linguistic correction, machine translation, and reformulation. Subsequently, the generated reformulations are automatically evaluated using BERTScore, a semantic similarity metric, in comparison with a small dataset. The most relevant reformulations are then selected,
+translated into French, and finally presented to the user.
+
+The initial phase of our Segma Vision Pro Light pipeline involves user instruction preprocessing, a crucial step to ensure seamless and efficient system interaction. Its purpose is to make the prompt (textual instruction) clear, structured, and comprehensible for both subsequent pipeline stages and the artificial intelligence models utilized.
+
+This preprocessing allows users to articulate their needs freely, without strict linguistic or syntactic constraints. In other words, users can express themselves naturally, and the system then takes charge of rendering the instruction actionable.
+
+
+The initial phase of our Segma Vision Pro Light pipeline involves user instruction preprocessing, a crucial step to ensure seamless and efficient system interaction. Its purpose is to make the prompt (textual instruction) clear, structured, and comprehensible for both subsequent pipeline stages and the artificial intelligence models utilized.
+
+This preprocessing allows users to articulate their needs freely, without strict linguistic or syntactic constraints. In other words, users can express themselves naturally, and the system then takes charge of rendering the instruction actionable.
+
+.. image:: images/logo4.jpg
+
+
+
 **Keyword Extraction Pipeline**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 To achieve this, the workflow begins with a preprocessing phase in which the user's prompt 
 is analyzed using a first large language model (LLM). This initial step aims to refine, normalize,
@@ -83,6 +107,15 @@ guiding the image segmentation process.
 This two-stage architecture—combining prompt preprocessing and targeted keyword 
 extraction—ensures higher precision and robustness in interpreting user instructions, laying 
 the foundation for more accurate and context-aware visual segmentation.
+
+
+
+.. image:: images/logo5.jpg
+
+
+**Pipeline of the project**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 
 .. image:: images/logo3.jpg

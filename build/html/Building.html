@@ -20,8 +20,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="REFERENCES" href="References.html" />
-    <link rel="prev" title="Modeles" href="Modeles.html" /> 
+    <link rel="next" title="Modeles" href="Modeles.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,16 +43,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">|
-&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;INTRODUCTION&lt;/span&gt;
-&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;BUILDING BLOCKS&lt;/span&gt;
-&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;FOUNDATION MODELS&lt;/span&gt;
-&lt;span style=&quot;color:#1E90FF;font-weight:bold;text-transform:uppercase&quot;&gt;IMAGE SEGMENTATION&lt;/span&gt;</span></p>
+              <p class="caption" role="heading"><span class="caption-text">TABLE DES MATIÈRES</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Modeles.html">Modeles</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Builiding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="References.html">REFERENCES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modeles.html">Modeles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="References.html">References</a></li>
 </ul>
 
         </div>
@@ -81,11 +77,14 @@
              
   <section id="builiding">
 <h1>Builiding<a class="headerlink" href="#builiding" title="Link to this heading"></a></h1>
-<section id="building-and-validating-the-keyword-extraction-model">
-<h2>Building and Validating the Keyword Extraction Model<a class="headerlink" href="#building-and-validating-the-keyword-extraction-model" title="Link to this heading"></a></h2>
+<section id="part-1-keyword-extraction-model">
+<h2><strong>Part 1 : Keyword Extraction Model</strong><a class="headerlink" href="#part-1-keyword-extraction-model" title="Link to this heading"></a></h2>
+<p>In this section, we will explore how to create the dataset for fine-tuning the keyword
+extraction model, as well as the testing and validation of this model</p>
 <section id="data-creation">
 <h3>Data Creation<a class="headerlink" href="#data-creation" title="Link to this heading"></a></h3>
-<p><strong>Dataset</strong></p>
+<section id="dataset">
+<h4><strong>Dataset</strong><a class="headerlink" href="#dataset" title="Link to this heading"></a></h4>
 <p>We will be working with the Object365 dataset, available on Hugging Face.</p>
 <p>The Objects365 dataset is a large-scale, high-quality dataset specifically created to advance research in object detection, with a strong emphasis on the diversity of objects as they appear in real-world scenarios (“in the wild”).
 - Scale: It comprises approximately 2 million high-resolution images.</p>
@@ -100,7 +99,9 @@
 <li><p>Dataset Structure: The dataset typically consists of a collection of images and a corresponding annotation file (often in a format similar to COCO), detailing the bounding box coordinates and category labels for each object in each image.</p></li>
 <li><p>Usage: It is widely used for training advanced deep learning models for object detection, evaluating their performance, and researching challenging aspects like detecting rare objects and improving model generalization.</p></li>
 </ul>
-<p><strong>Data to fine tune the model</strong></p>
+</section>
+<section id="data-to-fine-tune-the-model">
+<h4><strong>Data to fine tune the model</strong><a class="headerlink" href="#data-to-fine-tune-the-model" title="Link to this heading"></a></h4>
 <p>To fine-tune the Zephyr 7B Beta model, we first build a custom training dataset derived from the Object365 dataset. The process involves several key steps:</p>
 <p><span class="blue-bold-term">Annotation Extraction:</span> We begin by extracting the object annotations available in Object365. Each annotation corresponds to one or more object classes present in an image.</p>
 <p><span class="blue-bold-term">Prompt Generation:</span> We generate around 100 diverse prompts that vary in form, semantics, grammatical structure, and complexity. These prompts are designed to reflect the variety of ways a user might request object segmentation.</p>
@@ -291,7 +292,9 @@
     <span class="n">batch_num</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p><strong>Fine tune the modle on the created dataset</strong></p>
+</section>
+<section id="fine-tune-the-modle-on-the-created-dataset">
+<h4><strong>Fine tune the modle on the created dataset</strong><a class="headerlink" href="#fine-tune-the-modle-on-the-created-dataset" title="Link to this heading"></a></h4>
 <p>Fine-tuning a large language model such as Zephyr or Mistral requires significant computational resources. Typically, a GPU with at least 24 GB of VRAM is recommended for efficiently training a 7B parameter model. However, using optimization techniques such as LoRA and 4-bit quantization (bnb_4bit), it is possible to fine-tune on more modest hardware—sometimes with as little as 12–16 GB of VRAM, or even 8 GB with careful memory management. Additionally, at least 16 to 32 GB of RAM is advised depending on the size of the dataset and the model architecture.</p>
 <p>Several cloud platforms support fine-tuning:</p>
 <ul class="simple">
@@ -304,7 +307,9 @@
 hardware requires careful configuration to avoid out-of-memory errors</p>
 <p>After the fine-tuning is complete, we will have a folder containing the files obtained after the fine-tuning.
 This folder and the original template are used to extract keywords from the prompts.</p>
-<p><strong>Testing the modele</strong></p>
+</section>
+<section id="testing-the-modele">
+<h4><strong>Testing the modele</strong><a class="headerlink" href="#testing-the-modele" title="Link to this heading"></a></h4>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
 <span class="kn">from</span> <span class="nn">peft</span> <span class="kn">import</span> <span class="n">PeftModel</span>
 <span class="kn">import</span> <span class="nn">torch</span>
@@ -411,13 +416,256 @@ This folder and the original template are used to extract keywords from the prom
 </section>
 </section>
 </section>
+<section id="part-2-preprocessing-of-the-prompt">
+<h2><strong>Part 2 : Preprocessing of the prompt</strong><a class="headerlink" href="#part-2-preprocessing-of-the-prompt" title="Link to this heading"></a></h2>
+<section id="i-first-approach-nlp-functions">
+<h3><strong>I. First approach : NLP functions</strong><a class="headerlink" href="#i-first-approach-nlp-functions" title="Link to this heading"></a></h3>
+<p>Our focus here is on the intelligent prompt preprocessing system, a critical component of the Segma Vision Pro Light pipeline. We will detail its methodology for transforming raw user input into clear,
+actionable instructions, thereby enhancing system efficiency and accuracy</p>
+<p>The main objectives are:</p>
+<ul class="simple">
+<li><ol class="arabic simple">
+<li><p>Cleaning and Normalization: Remove noise (special characters, case inconsistencies) from prompts.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Grammar Correction: Fix grammatical errors in French or English text.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>Translation: Translate text between French and English.</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>Paraphrasing: Generate diverse and semantically equivalent reformulations of a prompt, ranked by relevance.</p></li>
+</ol>
+</li>
+</ul>
+<p>Detailed Breakdown of Each Function</p>
+<section id="nettoyer-prompt-prompt">
+<h4><strong>1. nettoyer_prompt(prompt):</strong><a class="headerlink" href="#nettoyer-prompt-prompt" title="Link to this heading"></a></h4>
+<p>This function leans a text prompt by removing special characters and converting it to lowercase</p>
+<section id="purpose">
+<h5>Purpose<a class="headerlink" href="#purpose" title="Link to this heading"></a></h5>
+<p>Cleans a prompt by removing special characters and converting to lowercase.</p>
+</section>
+<section id="techniques">
+<h5>Techniques<a class="headerlink" href="#techniques" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p>Regex pattern <code class="docutils literal notranslate"><span class="pre">[^\w\s]</span></code> to remove non-alphanumeric chars</p></li>
+<li><p>String method <code class="docutils literal notranslate"><span class="pre">lower()</span></code> for case normalization</p></li>
+</ul>
+</section>
+<section id="input-output">
+<h5>Input/Output<a class="headerlink" href="#input-output" title="Link to this heading"></a></h5>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Input</p></td>
+<td><p>Raw prompt (string)</p></td>
+</tr>
+<tr class="row-even"><td><p>Output</p></td>
+<td><p>Cleaned lowercase text (string)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span><span class="p">:</span> <span class="s2">&quot;Hello! How&#39;s the weather?&quot;</span>
+<span class="n">output</span><span class="p">:</span> <span class="s2">&quot;hello hows the weather&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="corriger-phrase">
+<h4><strong>2. corriger_phrase():</strong><a class="headerlink" href="#corriger-phrase" title="Link to this heading"></a></h4>
+<section id="id1">
+<h5>Purpose<a class="headerlink" href="#id1" title="Link to this heading"></a></h5>
+<p>Corrects grammatical errors in French or English text.</p>
+</section>
+<section id="id2">
+<h5>Techniques<a class="headerlink" href="#id2" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">language_tool_python</span></code> library</p></li>
+<li><p>Language-specific rules (‘fr’ or ‘en-US’)</p></li>
+</ul>
+</section>
+<section id="parameters">
+<h5>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h5>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Default</p></td>
+</tr>
+<tr class="row-even"><td><p>phrase</p></td>
+<td><p>str</p></td>
+<td><p>Required</p></td>
+</tr>
+<tr class="row-odd"><td><p>langue</p></td>
+<td><p>str (‘fr’/’en’)</p></td>
+<td><p>‘fr’</p></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span><span class="p">:</span> <span class="s2">&quot;Je suis aller&quot;</span>
+<span class="n">output</span><span class="p">:</span> <span class="s2">&quot;Je suis allé&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="translation-functions">
+<h4><strong>3. Translation Functions:</strong><a class="headerlink" href="#translation-functions" title="Link to this heading"></a></h4>
+<section id="traduire-en-anglais">
+<h5>3.1 traduire_en_anglais()<a class="headerlink" href="#traduire-en-anglais" title="Link to this heading"></a></h5>
+</section>
+<section id="id3">
+<h5>Purpose<a class="headerlink" href="#id3" title="Link to this heading"></a></h5>
+<p>Translates French text to English.</p>
+</section>
+<section id="traduire-en-francais">
+<h5>3.2 traduire_en_francais()<a class="headerlink" href="#traduire-en-francais" title="Link to this heading"></a></h5>
+</section>
+<section id="id4">
+<h5>Purpose<a class="headerlink" href="#id4" title="Link to this heading"></a></h5>
+<p>Translates English text to French.</p>
+</section>
+<section id="id5">
+<h5>Techniques<a class="headerlink" href="#id5" title="Link to this heading"></a></h5>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GoogleTranslator</span></code> from deep_translator</p></li>
+<li><p>Automatic language detection (source=’auto’)</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">input</span><span class="p">:</span> <span class="s2">&quot;Bonjour&quot;</span>
+<span class="n">output</span><span class="p">:</span> <span class="s2">&quot;Hello&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="reform">
+<h4><strong>4. reform():</strong><a class="headerlink" href="#reform" title="Link to this heading"></a></h4>
+<section id="id6">
+<h5>Purpose<a class="headerlink" href="#id6" title="Link to this heading"></a></h5>
+<p>Generates and ranks paraphrased versions of a prompt.</p>
+</section>
+<section id="technical-implementation">
+<h5>Technical Implementation<a class="headerlink" href="#technical-implementation" title="Link to this heading"></a></h5>
+<ol class="arabic simple">
+<li><p>Paraphrase Generation:
+- T5 model (Vamsi/T5_Paraphrase_Paws)
+- Advanced sampling: temperature=1.8 , top_p=0.8 , repetition_penalty=1.2</p></li>
+<li><p>Semantic Ranking:
+- BERTScore evaluation
+- roberta-large model
+- F1 metric scoring</p></li>
+</ol>
+</section>
+<section id="id7">
+<h5>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h5>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Default</p></td>
+</tr>
+<tr class="row-even"><td><p>prompt</p></td>
+<td><p>str</p></td>
+<td><p>Required</p></td>
+</tr>
+<tr class="row-odd"><td><p>dataset_path</p></td>
+<td><p>str</p></td>
+<td><p>Required</p></td>
+</tr>
+<tr class="row-even"><td><p>num_reformulations</p></td>
+<td><p>int</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>num_best</p></td>
+<td><p>int</p></td>
+<td><p>6</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="output">
+<h5>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h5>
+<p>Tuple containing:
+1. All generated reformulations (list)
+2. Top-ranked reformulations with scores (list of tuples)</p>
+</section>
+</section>
+<section id="dependencies">
+<h4>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>regex, language_tool_python, deep_translator</p></li>
+<li><p>transformers, torch, bert_score, numpy</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Source file : <code class="xref download docutils literal notranslate"><span class="pre">Preprocessing_functions.py</span></code></p>
+</div>
+</section>
+</section>
+<section id="ii-second-approach-llm-based-text-processing-approach">
+<h3><strong>II. Second approach : LLM-Based Text Processing Approach</strong><a class="headerlink" href="#ii-second-approach-llm-based-text-processing-approach" title="Link to this heading"></a></h3>
+<p>This approach replaces multiple NLP functions with a single Large Language Model (LLM) for unified text preprocessing, offering enhanced quality and simplicity.</p>
+<section id="key-advantages">
+<h4><strong>Key Advantages</strong><a class="headerlink" href="#key-advantages" title="Link to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>End-to-End Processing</p></li>
+</ol>
+<ul class="simple">
+<li><p>Replaces multiple specialized functions with one model</p></li>
+<li><p>Eliminates complex pipelines and tool dependencies</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Contextual Understanding</p></li>
+</ol>
+<ul class="simple">
+<li><p>Better grammar correction through semantic analysis</p></li>
+<li><p>Maintains coherent paraphrasing with original intent</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Multilingual Efficiency</p></li>
+</ol>
+<ul class="simple">
+<li><p>Supports 100+ languages natively</p></li>
+<li><p>Provides more natural translations than dictionary methods</p></li>
+</ul>
+<ol class="arabic simple" start="4">
+<li><p>Adaptability</p></li>
+</ol>
+<ul class="simple">
+<li><p>Customizable via prompt engineering</p></li>
+<li><p>Supports few-shot learning for domain adaptation</p></li>
+</ul>
+</section>
+<section id="llm-model-selection">
+<h4><strong>LLM Model Selection</strong><a class="headerlink" href="#llm-model-selection" title="Link to this heading"></a></h4>
+<p>The <strong>Mistral</strong> model, run locally via the <strong>Ollama</strong> environment, was chosen as the primary engine for processing user prompts. Several technical and operational criteria informed this decision:</p>
+<ul class="simple">
+<li><p>Advanced Capabilities: Mistral is recognized for its advanced text understanding and generation capabilities, particularly in tasks like reformulation, grammatical correction, and translation. This makes it ideally suited for our intelligent semantic preprocessing needs.</p></li>
+<li><p>Open-Source Nature: As an open-source model, Mistral offers flexibility and transparency.</p></li>
+<li><p>Seamless Integration: The model integrates easily with evaluation tools such as BERTScore, enabling automated measurement of the relevance of generated reformulations.</p></li>
+</ul>
+</section>
+<section id="utilizing-bertscore-for-reformulation-filtering">
+<h4><strong>Utilizing BERTScore for Reformulation Filtering</strong><a class="headerlink" href="#utilizing-bertscore-for-reformulation-filtering" title="Link to this heading"></a></h4>
+<p>What is BERTScore?</p>
+<p>BERTScore is a metric derived from the F1 score of BERT, specifically utilizing a roberta-large model. It’s designed to measure the semantic
+similarity between original prompts and their generated reformulations.</p>
+<p>Following the generation of initial prompt reformulations by the LLM model (Mistral via Ollama), it’s essential to filter and select those most relevant and semantically closest to our dataset used for training the keyword extraction model (the classes to be segmented or labeled). To achieve this, we’ve integrated an advanced scoring method: <strong>BERTScore</strong></p>
+</section>
+</section>
+</section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Modeles.html" class="btn btn-neutral float-left" title="Modeles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="References.html" class="btn btn-neutral float-right" title="REFERENCES" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Modeles.html" class="btn btn-neutral float-right" title="Modeles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
