@@ -3,15 +3,24 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-SVPLAS documentation
-====================
-
+##############################
+SegmaVisionProLight
+##############################
 Add your content using ``reStructuredText`` syntax. See the
 `reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
 documentation for details.
 
-
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 3
+   :caption: |
+      <span style="color:#1E90FF;font-weight:bold;text-transform:uppercase">INTRODUCTION</span>
+      <span style="color:#1E90FF;font-weight:bold;text-transform:uppercase">BUILDING BLOCKS</span>
+      <span style="color:#1E90FF;font-weight:bold;text-transform:uppercase">FOUNDATION MODELS</span>
+      <span style="color:#1E90FF;font-weight:bold;text-transform:uppercase">IMAGE SEGMENTATION</span>
+   :name: mainmenu
+   :hidden:
 
+   introduction
+   Modeles
+   Building
+   References
