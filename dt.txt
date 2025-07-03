@@ -1,0 +1,10 @@
+{"input": "Locate Glasses Belt Watch Person Power outlet and mark their precise placement"}
+{"input": "Find and mark the visible elements Person Glasses Hat Belt Bowl Basin Plate Pumpkin Cabbage Potato Carrot Tomato Hamimelon Pepper"}
+{"input": "Find identifiable objects focusing on Person Glasses Other Shoes Tripod Microphone"}
+{"input": "Estimate the presence of Hat Glasses Gloves Person Tent among visible elements"}
+{"input": "Locate Person Lamp Tie Belt Hat Glasses Backpack Handbag Satchel Boat and mark their precise placement"}
+{"input": "Segment each Person Hat Sneakers Sports Car found in this scene"}
+{"input": "Indicate the position of Street Lights Truck Person Helmet Hat Handbag Satchel Other Shoes Glasses Gloves in image"}
+{"input": "Detect the objects with highest probability including Flower Lamp Desk Boots Other Shoes Hat Person Bracelet"}
+{"input": "Classify the detected objects including Person Moniter TV Glasses"}
+{"input": "Detect if Street Lights is reflected on a surface"}
